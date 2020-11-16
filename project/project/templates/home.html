@@ -2,27 +2,42 @@
 <!doctype html>
 <!--templates/home.html-->
 <html lang="en">
-<title>Untitled</title>
+<title>Homepage</title>
+
+<!--Django tag to css-->
 <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
 <head>
   <meta charset="utf-8">
-
-  <title>The HTML5 Herald</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
-
-  
-
 </head>
-  <h1>
-    <a href="http://3.84.25.172:8000/admin">Link:Admin backend Portal</a>
-  </h1>
+
 <body>
-  <h1>
-    Guys this is the new homepage located in: /django_project/project/project/templates/home.html(locations for website templates)
-  </h1>
-  <h1>
-    Main project Css: /django_project/project/project/static/main.css
-  </h1>
+  <div class="grid">
+    <header>
+      <h1>
+        <a href="http://3.84.25.172:8000/admin">Link:Admin backend Portal</a>
+      </h1>
+    </header>
+  
+    <aside class="sidebar-left">
+      Left Sidebar
+    </aside>
+  
+    <article>
+        Guys this is the new homepage located in: /django_project/project/project/templates/home.html(locations for website templates)
+      <h1>
+        Main project Css: /django_project/project/project/static/main.css
+      </h1>
+    </article>
+  
+    <aside class="sidebar-right">
+      Right Sidebar
+    </aside>
+    
+    <footer>
+      Footer
+    </footer>
+  </div>
 </body>
 </html>
