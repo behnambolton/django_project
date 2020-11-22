@@ -1,7 +1,9 @@
 .grid {
+    --auto-grid-min-size: 16rem;
     display: grid;
-    grid-template-columns: 150px auto 150px;
-    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    grid-gap: 1rem;
+    border: 2px solid #000;
   }
   
   header, footer {
@@ -15,19 +17,34 @@
     }
   }
   
-  body {
-    margin: 0 auto;
-    max-width: 56em;
-    padding: 1em 0;
-  }
-  
-  header,
-  aside,
-  article,
   footer {
     background: #eaeaea;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 25vh;
+    height: 14em;
+  }
+
+  article {
+    background: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14em;
+  }
+
+  aside {
+    background: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14em;
+  }
+
+  header {
+    background: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14em;
   }
