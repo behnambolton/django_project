@@ -45,7 +45,7 @@ class Students(models.Model):
     admin=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     gender=models.CharField(max_length=255)
     address=models.TextField()
-    course_id=models.ForeignKey(Courses,on_delete=models.DO_NOTHING)
+    course_id=models.ForeignKey(Courses,on_delete=models.DO_NOTHING, default=1)
     session_start_year=models.DateField()
     session_end_year =models.DateField()
     created_at=models.DateTimeField(auto_now_add=True)
@@ -77,7 +77,8 @@ def create_user_profile(sender, instance, created,**kwargs):
         if instance.user_type==2:
             Staffs.objects.create(admin=instance)
         if instance.user_type==3:
-            Students.objects.create(admin=instance)
+            # This Model needs default values before intitilization due to dependencies of other tables
+            Students.objects.create(admin=instance, course_id=Courses.objects.get(id=1),session_start_year="2020-01-01",session_end_year="2020-01-01",address="",gender="")
 
 @receiver(post_save, sender=CustomUser)
 def save_user_profile(sender, instance,**kwargs):
