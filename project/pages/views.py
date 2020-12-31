@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate
-from pages.EmailBackEnd import EmailBackEnd
+from .EmailBackEnd import EmailBackEnd  #using relitive path (python 3)
 from django.contrib import messages
 
 
