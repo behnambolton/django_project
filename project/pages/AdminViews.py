@@ -2,7 +2,7 @@ from datetime import datetime
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
-from .models import CustomUser,Staffs,Courses,Students #using relitive path (python 3)
+from .models import CustomUser,Staffs,Courses,Students, Subjects #using relitive path (python 3)
 
 #_______________________________________________
 # Template Load Methods
@@ -21,6 +21,12 @@ def add_student(request):
     courses=Courses.objects.all() #get courses for template page tag
     #calling template render and passing course list to the django tag
     return render(request,"admin_template/add_student_template.html",{"courses":courses})
+
+def add_subject(request):
+    courses=Courses.objects.all() #get course List for template page tag
+    staffs=CustomUser.objects.filter(user_type=2) #filter method (used for targeting single attribute)
+    #calling template render and passing course list to the django tag
+    return render(request,"admin_template/add_subject_template.html",{"courses":courses,"staffs":staffs})
 
 
 
@@ -91,3 +97,6 @@ def add_student_save(request):
         except:
             messages.error(request,"Failed to add user. Please Ensure all fields are correct")
             return HttpResponseRedirect("/add_student")
+
+def add_subject_save(request):
+    return None
