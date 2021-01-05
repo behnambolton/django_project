@@ -28,11 +28,17 @@ urlpatterns = [
     path('doLogin', views.doLogin),
     path('admin_home', AdminViews.admin_home),
     path('add_staff', AdminViews.add_staff),
+    path('manage_staff', AdminViews.manage_staff),
     path('add_course', AdminViews.add_course),
+    path('manage_course', AdminViews.manage_course),
     path('add_student',AdminViews.add_student),
+    path('manage_student', AdminViews.manage_student),
     path('add_subject',AdminViews.add_subject),
+    path('manage_subject', AdminViews.manage_subject),
     path('add_staff_save', AdminViews.add_staff_save),
+    path('edit_staff/<str:staff_id>', AdminViews.edit_staff),
     path('add_course_save', AdminViews.add_course_save),
     path('add_student_save', AdminViews.add_student_save),
     path('add_subject_save', AdminViews.add_subject_save),
+    # joining static dir to url pattern
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

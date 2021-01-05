@@ -14,19 +14,36 @@ def admin_home(request):
 def add_staff(request):
     return render(request,"admin_template/add_staff_template.html")
 
+def manage_staff(request):
+    staffs=Staffs.objects.all()
+    return render(request,"admin_template/manage_staff_template.html",{"staffs":staffs})
+
 def add_course(request):
     return render(request,"admin_template/add_course_template.html")
+
+def manage_course(request):
+    courses=Courses.objects.all()
+    return render(request,"admin_template/manage_course_template.html",{"courses":courses})
 
 def add_student(request):
     courses=Courses.objects.all() #get courses for template page tag
     #calling template render and passing course list to the django tag
     return render(request,"admin_template/add_student_template.html",{"courses":courses})
 
+def manage_student(request):
+    students=Students.objects.all()
+    return render(request,"admin_template/manage_student_template.html",{"students":students})
+
 def add_subject(request):
     courses=Courses.objects.all() #get course List for template page tag
     staffs=CustomUser.objects.filter(user_type=2) #filter method (used for targeting single attribute)
+    subjects=Subjects.objects.all()
     #calling template render and passing course list to the django tag
-    return render(request,"admin_template/add_subject_template.html",{"courses":courses,"staffs":staffs})
+    return render(request,"admin_template/add_subject_template.html",{"courses":courses,"staffs":staffs,"subjects":subjects})
+
+def manage_subject(request):
+    subjects=Subjects.objects.all()
+    return render(request,"admin_template/manage_subject_template.html",{"subjects":subjects})
 
 
 
@@ -53,6 +70,9 @@ def add_staff_save(request):
         except:
             messages.error(request,"Failed to add user. Please Ensure all fields are correct")
             return HttpResponseRedirect("/add_staff")
+
+def edit_staff(request,staff_id): # second parameter for url parameter
+    return HttpResponse("Staff id"+staff_id)
 
 def add_course_save(request):
     if request.method!="POST":
@@ -99,4 +119,20 @@ def add_student_save(request):
             return HttpResponseRedirect("/add_student")
 
 def add_subject_save(request):
-    return None
+    if request.method!="POST":
+        return HttpResponse("Post Method Not Allowed")
+    else:
+        subject_name=request.POST.get("subject_name")
+        course_id=request.POST.get("course")
+        course=Courses.objects.get(id=course_id)
+        staff_id=request.POST.get("staff")
+        staff=CustomUser.objects.get(id=staff_id)
+
+        try:
+            subject=Subjects(subject_name=subject_name,staff_id=staff,course_id=course)
+            subject.save()
+            messages.success(request,"Subject Successfully Added")
+            return HttpResponseRedirect("/add_subject")
+        except:
+            messages.error(request,"Failed to add Subject. Please try again")
+            return HttpResponseRedirect("/add_subject")
