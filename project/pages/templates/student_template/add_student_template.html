@@ -1,9 +1,27 @@
-{% extends 'admin_template/base_template.html' %}
+
 {% block page_title%}
-Add Staff
 {% endblock page_title%}
 {% block main_content %}
 {% load static %}
+<link rel="stylesheet" href="{% static "plugins/fontawesome-free/css/all.min.css"%}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="{% static "plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"%}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{% static "plugins/icheck-bootstrap/icheck-bootstrap.min.css"%}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{% static "plugins/jqvmap/jqvmap.min.css"%}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static "dist/css/adminlte.min.css"%}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{% static "plugins/overlayScrollbars/css/OverlayScrollbars.min.css"%}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{% static "plugins/daterangepicker/daterangepicker.css"%}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{% static "plugins/summernote/summernote-bs4.css"%}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -12,11 +30,11 @@ Add Staff
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create New University Staff</h3>
+                <h3 class="card-title">Registration Details</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/add_staff_save" method="POST">
+              <form role="form" action="/register_student_save" method="POST">
                 {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
@@ -56,6 +74,34 @@ Add Staff
                   <div class="form-group">
                     <label>Address</label>
                     <input type="text" class="form-control" name="address" placeholder="Enter User Address" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Course</label>
+                    <select class="form-control" name="course" required>
+                      <option selected="selected">Select Course</option>
+                      {% for course in courses %}
+                        <option value="{{ course.id }}">{{ course.course_name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Gender</label>
+                    <select class="form-control" name="gender" required>
+                        <option>None</option>
+                        <option>Female</option>
+                        <option>Male</option>
+                        <option>Transgender</option>
+                        <option>Neutral</option>
+                        <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Start Year</label>
+                    <input type="date" class="form-control" placeholder="Enter End Year" name="start_year" required>
+                  </div>
+                  <div class="form-group">
+                    <label>End Year</label>
+                    <input type="date" class="form-control" placeholder="Enter End Year" name="end_year" required>
                   </div>
 
                 </div>

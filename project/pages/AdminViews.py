@@ -11,12 +11,22 @@ def admin_home(request):
     #load the template as django view
     return render(request,"admin_template/home_content.html")
 
+def student_home(request):
+    #load the template as django view
+    return render(request,"student_template/home_content.html")
+
+
 def add_staff(request):
     return render(request,"admin_template/add_staff_template.html")
 
 def manage_staff(request):
     staffs=Staffs.objects.all()
     return render(request,"admin_template/manage_staff_template.html",{"staffs":staffs})
+
+def edit_staff(request,staff_id): # second parameter for url parameter
+    # finding staff with parsed url pattern variable
+    staff=Staffs.objects.get(admin=staff_id)
+    return render(request,"admin_template/edit_staff_template.html",{"staff":staff})
 
 def add_course(request):
     return render(request,"admin_template/add_course_template.html")
@@ -25,14 +35,29 @@ def manage_course(request):
     courses=Courses.objects.all()
     return render(request,"admin_template/manage_course_template.html",{"courses":courses})
 
+def edit_course(request,course_id): # second parameter for url parameter
+    # finding staff with parsed url pattern variable
+    course=Courses.objects.get(course_id=course_id)
+    return render(request,"admin_template/edit_course_template.html",{"course":course})
+
 def add_student(request):
     courses=Courses.objects.all() #get courses for template page tag
     #calling template render and passing course list to the django tag
     return render(request,"admin_template/add_student_template.html",{"courses":courses})
 
+def register_student(request):
+    courses=Courses.objects.all() #get courses for template page tag
+    #calling template render and passing course list to the django tag
+    return render(request,"student_template/add_student_template.html",{"courses":courses})
+
 def manage_student(request):
     students=Students.objects.all()
     return render(request,"admin_template/manage_student_template.html",{"students":students})
+
+def edit_student(request,student_id): # second parameter for url parameter
+    # finding staff with parsed url pattern variable
+    student=Students.objects.get(admin=student_id)
+    return render(request,"admin_template/edit_student_template.html",{"student":student})
 
 def add_subject(request):
     courses=Courses.objects.all() #get course List for template page tag
@@ -45,6 +70,10 @@ def manage_subject(request):
     subjects=Subjects.objects.all()
     return render(request,"admin_template/manage_subject_template.html",{"subjects":subjects})
 
+def edit_subject(request,subject_id): # second parameter for url parameter
+    # finding staff with parsed url pattern variable
+    subject=Subjects.objects.get(subject_id=subject_id)
+    return render(request,"admin_template/edit_staff_template.html",{"subject":subject})
 
 
 #_____________________________________________________
@@ -71,8 +100,8 @@ def add_staff_save(request):
             messages.error(request,"Failed to add user. Please Ensure all fields are correct")
             return HttpResponseRedirect("/add_staff")
 
-def edit_staff(request,staff_id): # second parameter for url parameter
-    return HttpResponse("Staff id"+staff_id)
+def edit_staff_save():
+    return None
 
 def add_course_save(request):
     if request.method!="POST":
