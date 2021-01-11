@@ -1,3 +1,4 @@
+from pages.models import Students
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse

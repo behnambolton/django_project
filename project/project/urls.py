@@ -36,6 +36,7 @@ urlpatterns = [
     path('add_student',AdminViews.add_student),
     path('manage_student', AdminViews.manage_student),
     path('register_student', AdminViews.register_student),
+    path('register_student_save', AdminViews.register_student_save),
     path('add_subject',AdminViews.add_subject),
     path('manage_subject', AdminViews.manage_subject),
     path('add_staff_save', AdminViews.add_staff_save),

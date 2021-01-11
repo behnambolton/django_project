@@ -7,8 +7,19 @@ Home
 <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        
-        <center><h2>Student Home Content<h2></center>
+        <center><h2>Your Courses<h2></center>
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <p>Course ID: {{ student.course_id_id }}</p>
+
+              <p> <b> {{ student.course_id.course_name }} </b></p>
+            </div>
+            
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
     
       </div><!-- /.container-fluid -->
     </section>
