@@ -44,5 +44,5 @@ urlpatterns = [
     path('add_course_save', AdminViews.add_course_save),
     path('add_student_save', AdminViews.add_student_save),
     path('add_subject_save', AdminViews.add_subject_save),
-    # joining static dir to url pattern
+    # joining staticfile dir to url pattern
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

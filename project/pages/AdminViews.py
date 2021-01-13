@@ -17,7 +17,6 @@ def student_home(request):
     subjects = Subjects.objects.all()
     return render(request,"student_template/home_content.html",{"student":student, "subjects":subjects})
 
-
 def add_staff(request):
     return render(request,"admin_template/add_staff_template.html")
 
@@ -102,9 +101,6 @@ def add_staff_save(request):
             messages.error(request,"Failed to add user. Please Ensure all fields are correct")
             return HttpResponseRedirect("/add_staff")
 
-def edit_staff_save():
-    return None
-
 def add_course_save(request):
     if request.method!="POST":
         return HttpResponse("Post Method Not Allowed")
@@ -178,6 +174,9 @@ def register_student_save(request):
         except:
             messages.error(request,"Failed to add user. Please Ensure all fields are correct")
             return HttpResponseRedirect("/")
+
+def edit_staff_save():
+    return None
 
 def add_subject_save(request):
     if request.method!="POST":
